@@ -30,18 +30,18 @@ public class Blobb : MonoBehaviour, IDamageable  {
 		
 		foreach(CollisionChecker colChecker in collisionCheckers){
 			if(!colChecker.collide){
-				if(colChecker.name == "leftDown"  & left){
+				if(colChecker.name == "leftDown"  && left){
 					curTime = time;
 					left = false;
-				}else if(colChecker.name == "rightDown"  & !left){
+				}else if(colChecker.name == "rightDown"  && !left){
 					curTime = time;
 					left = true;
 				}
 			}else{
-				if(colChecker.name == "left" & !left){
+				if(colChecker.name == "left" && !left){
 					curTime = time;
 					left = false;
-				}else if(colChecker.name == "right" & !left){
+				}else if(colChecker.name == "right" && !left){
 					curTime = time;
 					left = true;
 				}	
