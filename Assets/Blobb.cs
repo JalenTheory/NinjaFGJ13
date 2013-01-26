@@ -73,6 +73,7 @@ public class Blobb : MonoBehaviour, IDamageable  {
 	}
 	
 	public bool Damage(int damage){
+		rigidbody.velocity = Vector3.zero;
 		health -= damage;
 		if(health <= 0){
 			Destroy(this.gameObject);

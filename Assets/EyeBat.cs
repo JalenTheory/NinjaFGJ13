@@ -8,7 +8,6 @@ public class EyeBat : MonoBehaviour, IDamageable {
 	public float radius;
 	public float bob;
 	public float bobSpeed;
-	//private float TAU = Mathf.PI * 2;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +19,7 @@ public class EyeBat : MonoBehaviour, IDamageable {
 	}
 	
 	public bool Damage(int damage){
+		rigidbody.AddTorque(new Vector3(0.5f, 0.5f, 0.5f));
 		health -= damage;
 		if(health <= 0){
 			Destroy(this.gameObject);
