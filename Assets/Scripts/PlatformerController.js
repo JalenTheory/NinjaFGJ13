@@ -97,6 +97,13 @@ class PlatformerControllerJumping {
 	var lastStartHeight = 0.0;
 }
 
+public var gravelSounds : AudioClip[];
+
+public var dropSound : AudioClip;
+
+private var rand;
+
+
 var jump : PlatformerControllerJumping;
 
 private var controller : CharacterController;
@@ -111,6 +118,7 @@ private var lastPlatformVelocity : Vector3;
 private var areEmittersOn = false;
 
 function Awake () {
+
 	movement.direction = transform.TransformDirection (Vector3.forward);
 	controller = GetComponent (CharacterController);
 	Spawn ();
@@ -121,6 +129,7 @@ function Spawn () {
 	movement.verticalSpeed = 0.0;
 	movement.speed = 0.0;
 	
+
 	// reset the character's position to the spawnPoint
 //	transform.position = spawnPoint.position;
 	
@@ -158,13 +167,18 @@ function UpdateSmoothedMovementDirection () {
 		movement.speed = Mathf.Lerp (movement.speed, targetSpeed, curSmooth);
 		
 		movement.hangTime = 0.0;
-	}
-	else {
+		if(movement.isMoving && !audio.isPlaying){
+			var nextClip = gravelSounds[Random.Range(0,gravelSounds.Length)];
+			audio.clip = nextClip;
+			audio.Play();
+		}
+		
+	}else {
 		// In air controls
 		movement.hangTime += Time.deltaTime;
 		if (movement.isMoving){
 			movement.inAirVelocity += Vector3 (Mathf.Sign(h), 0, 0) * Time.deltaTime * movement.inAirControlAcceleration;
-			}
+		}
 		
 	}
 }
@@ -301,6 +315,8 @@ function Update () {
 	if (controller.isGrounded) {
 		movement.inAirVelocity = Vector3.zero;
 		if (jump.jumping) {
+			audio.clip = dropSound;
+			audio.Play();
 			jump.jumping = false;
 			SendMessage ("DidLand", SendMessageOptions.DontRequireReceiver);
 

@@ -63,6 +63,14 @@ public class Blobb : MonoBehaviour, IDamageable  {
 	}
 	
 	void OnCollisionEnter(Collision collision) {
+		print ("asdad");
+	    IDamageable[] cs = collision.gameObject.GetComponents(System.Type.GetType("AssemblyCSharp.IDamageable")) as IDamageable[];
+		if(cs == null)
+			return;
+		foreach(IDamageable c in cs){
+			c.Damage(1);
+		}
+		
 		ground = true;
 		rigidbody.drag = 10;
 	}

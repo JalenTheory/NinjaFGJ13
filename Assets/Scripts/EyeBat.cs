@@ -3,11 +3,11 @@ using System.Collections;
 using AssemblyCSharp;
 
 public class EyeBat : MonoBehaviour, IDamageable {
-	public int health; 
-	public float speed;
-	public float radius;
-	public float bob;
-	public float bobSpeed;
+	public int health = 5; 
+	public float speed = 1;
+	public float radius = 5;
+	public float bob = 3;
+	public float bobSpeed = 1;
 
 	// Use this for initialization
 	void Start () {
