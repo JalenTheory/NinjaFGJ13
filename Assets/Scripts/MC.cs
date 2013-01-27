@@ -18,7 +18,9 @@ public class MC : MonoBehaviour {
 		
 	}
 	
-	 
+	 void FixedUpdate(){
+		//transform.position.Set(transform.position.x, transform.position.y, 0);
+	}
 	
 	
 }

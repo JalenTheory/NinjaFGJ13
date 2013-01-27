@@ -162,15 +162,16 @@ function UpdateSmoothedMovementDirection () {
 	else {
 		// In air controls
 		movement.hangTime += Time.deltaTime;
-		if (movement.isMoving)
+		if (movement.isMoving){
 			movement.inAirVelocity += Vector3 (Mathf.Sign(h), 0, 0) * Time.deltaTime * movement.inAirControlAcceleration;
+			}
+		
 	}
 }
 
 function FixedUpdate () {
 	// Make sure we are absolutely always in the 2D plane.
 	transform.position.z = 0;
-
 }
 
 function ApplyJumping () {
@@ -293,8 +294,8 @@ function Update () {
 	}
 	
 	// Set rotation to the move direction	
-	if (movement.direction.sqrMagnitude > 0.01)
-		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (movement.direction), Time.deltaTime * movement.rotationSmoothing);
+	//if (movement.direction.sqrMagnitude > 0.01)
+	//	transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (movement.direction), Time.deltaTime * movement.rotationSmoothing);
 	
 	// We are in jump mode but just became grounded
 	if (controller.isGrounded) {
@@ -303,9 +304,9 @@ function Update () {
 			jump.jumping = false;
 			SendMessage ("DidLand", SendMessageOptions.DontRequireReceiver);
 
-			var jumpMoveDirection = movement.direction * movement.speed + movement.inAirVelocity;
-			if (jumpMoveDirection.sqrMagnitude > 0.01)
-				movement.direction = jumpMoveDirection.normalized;
+			//var jumpMoveDirection = movement.direction * movement.speed + movement.inAirVelocity;
+			//if (jumpMoveDirection.sqrMagnitude > 0.01)
+				movement.direction = Vector3.zero;
 		}
 	}	
 

@@ -14,13 +14,14 @@ var target : Transform;
 // The distance in the x-z plane to the target
 var distance = 10.0;
 // the height we want the camera to be above the target
-var height = 5.0;
+var height = 7.0;
 // How much we 
-var heightDamping = 2.0;
+var heightDamping = 100.0;
 var rotationDamping = 3.0;
 
 // Place the script in the Camera-Control group in the component menu
 @script AddComponentMenu("Camera-Control/Smooth Follow")
+
 
 
 function LateUpdate () {
@@ -50,8 +51,8 @@ function LateUpdate () {
 	transform.position -= currentRotation * Vector3.forward * distance;
 
 	// Set the height of the camera
-	transform.position.y = currentHeight;
+	//transform.position.y = currentHeight;
 	
 	// Always look at the target
-	transform.LookAt (target);
+	//transform.LookAt (target);
 }
